@@ -123,7 +123,6 @@
         </div>
 
         <div class="pricing-grid">
-          <!-- Iron Plan -->
           <div class="pricing-card">
             <div class="pricing-header">
               <h3 class="plan-name">Iron</h3>
@@ -142,10 +141,9 @@
               <li class="muted"><span class="cross-icon">&times;</span> Contrast Recovery Suite</li>
               <li class="muted"><span class="cross-icon">&times;</span> 24/7 Keycard Access</li>
             </ul>
-            <a href="#lead-form" class="btn btn-outline btn-block">Select Iron</a>
+            <a href="#free-trial" class="btn btn-outline btn-block">Select Iron</a>
           </div>
 
-          <!-- Black Plan (Prominent) -->
           <div class="pricing-card prominent">
             <div class="popular-badge">MOST POPULAR &bull; ALL ACCESS</div>
             <div class="pricing-header">
@@ -165,10 +163,9 @@
               <li><span class="check-icon">&#10003;</span> 2 Complimentary Monthly Guest Passes</li>
               <li><span class="check-icon">&#10003;</span> Monthly 1-on-1 PT Check-in &amp; Scan</li>
             </ul>
-            <a href="#lead-form" class="btn btn-primary btn-block">Join Black Tier</a>
+            <a href="#free-trial" class="btn btn-primary btn-block">Join Black Tier</a>
           </div>
 
-          <!-- Steel Plan -->
           <div class="pricing-card">
             <div class="pricing-header">
               <h3 class="plan-name">Steel</h3>
@@ -187,7 +184,7 @@
               <li class="muted"><span class="cross-icon">&times;</span> 24/7 Keycard Access</li>
               <li class="muted"><span class="cross-icon">&times;</span> PT Check-in</li>
             </ul>
-            <a href="#lead-form" class="btn btn-outline btn-block">Select Steel</a>
+            <a href="#free-trial" class="btn btn-outline btn-block">Select Steel</a>
           </div>
         </div>
 
@@ -209,7 +206,6 @@
         </div>
 
         <div class="classes-grid">
-          <!-- Class 1 -->
           <div class="class-card">
             <div class="class-type-badge">Conditioning / HIIT</div>
             <h3 class="class-name">Stacked Engine</h3>
@@ -226,7 +222,6 @@
             </div>
           </div>
 
-          <!-- Class 2 -->
           <div class="class-card">
             <div class="class-type-badge">Strength &amp; Form</div>
             <h3 class="class-name">Barbell Foundations</h3>
@@ -243,7 +238,6 @@
             </div>
           </div>
 
-          <!-- Class 3 -->
           <div class="class-card">
             <div class="class-type-badge">Restoration</div>
             <h3 class="class-name">Mobility &amp; Decompression</h3>
@@ -382,15 +376,15 @@
       </div>
     </section>
 
-    <!-- Free Trial CTA & Lead Registration Form -->
+    <!-- Free Trial CTA (lead form lives inside the chatbot) -->
     <section class="section free-trial" id="free-trial">
       <div class="container">
-        <div class="trial-wrapper">
+        <div class="trial-wrapper trial-wrapper-single">
           <div class="trial-text">
             <span class="section-eyebrow">No Risk First Visit</span>
             <h2 class="section-title">Try TheStackedHq for Free</h2>
             <p class="trial-lead">
-              Local first-time visitors can get a free 1-day pass at the front desk. Experience the equipment, hit a lift, and test the sauna firsthand.
+              Local first-time visitors can get a free 1-day pass. Experience the equipment, hit a lift, and test the sauna firsthand.
             </p>
             <ul class="trial-perks">
               <li>&bull; Instant digital confirmation code</li>
@@ -400,41 +394,8 @@
             <div class="location-brief">
               <strong>Location:</strong> 104 Foundry Way, Central Warehouse District
             </div>
-          </div>
-
-          <div class="form-wrapper" id="lead-form">
-            <div class="form-card">
-              <div class="form-header">
-                <h3>Claim Free Day Pass</h3>
-                <p>Register below to secure your guest access.</p>
-              </div>
-
-              <form id="leadRegistrationForm" novalidate>
-                <div class="form-group">
-                  <label for="leadName">Full Name</label>
-                  <input type="text" id="leadName" name="name" placeholder="Marcus Vance" autocomplete="name" required />
-                  <span class="field-error" id="nameError"></span>
-                </div>
-
-                <div class="form-group">
-                  <label for="leadEmail">Email Address</label>
-                  <input type="email" id="leadEmail" name="email" placeholder="marcus@email.com" autocomplete="email" required />
-                  <span class="field-error" id="emailError"></span>
-                </div>
-
-                <div class="form-group">
-                  <label for="leadPhone">Phone Number</label>
-                  <input type="tel" id="leadPhone" name="phone" placeholder="(555) 123-4567" autocomplete="tel" required />
-                  <span class="field-error" id="phoneError"></span>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block" id="submitLeadBtn">
-                  <span class="btn-label">Claim My Free Pass</span>
-                  <span class="btn-spinner"></span>
-                </button>
-
-                <div class="form-alert" id="formAlert"></div>
-              </form>
+            <div class="trial-cta-row">
+              <button type="button" class="btn btn-primary" id="openChatFromTrial">Chat to Claim Free Pass</button>
             </div>
           </div>
         </div>
@@ -449,8 +410,8 @@
     </div>
   </footer>
 
-  <!-- AI Chat Widget -->
-  <div class="chat-widget-container">
+  <!-- AI Chat Widget — button always visible; lead form is first screen inside -->
+  <div class="chat-widget-container" id="chatWidgetContainer">
     <div class="chat-window" id="chatWindow" hidden>
       <div class="chat-header">
         <div class="chat-header-info">
@@ -458,7 +419,7 @@
           <span class="chat-header-status"><span class="chat-online-badge"></span> Online now</span>
         </div>
         <div class="chat-header-actions">
-          <button class="chat-icon-btn" id="chatClearBtn" aria-label="Clear conversation" title="Clear conversation">
+          <button class="chat-icon-btn" id="chatClearBtn" aria-label="Clear conversation" title="Clear conversation" hidden>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
           </button>
           <button class="chat-icon-btn" id="chatCloseBtn" aria-label="Close chat">
@@ -467,24 +428,53 @@
         </div>
       </div>
 
-      <div class="chat-messages" id="chatMessages">
-        <div class="chat-bubble bot-message">
-          Hey! I'm the TheStackedHq assistant. Ask me about hours, membership pricing, or class times &mdash; or tap a quick question below.
+      <!-- Lead form gate (shown until successful submission) -->
+      <div class="chat-lead-gate" id="chatLeadGate">
+        <div class="chat-lead-welcome">
+          Hey! Welcome to TheStackedHq 👋<br><br>
+          Submit your information to receive exclusive discount offers and start chatting with our assistant.
         </div>
+        <form id="chatLeadForm" class="chat-lead-form" novalidate>
+          <div class="chat-form-group">
+            <label for="chatLeadName">Full Name</label>
+            <input type="text" id="chatLeadName" name="name" placeholder="Marcus Vance" autocomplete="name" required />
+            <span class="chat-field-error" id="chatNameError"></span>
+          </div>
+          <div class="chat-form-group">
+            <label for="chatLeadEmail">Email Address</label>
+            <input type="email" id="chatLeadEmail" name="email" placeholder="marcus@email.com" autocomplete="email" required />
+            <span class="chat-field-error" id="chatEmailError"></span>
+          </div>
+          <div class="chat-form-group">
+            <label for="chatLeadPhone">Phone Number</label>
+            <input type="tel" id="chatLeadPhone" name="phone" placeholder="(555) 123-4567" autocomplete="tel" required />
+            <span class="chat-field-error" id="chatPhoneError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block chat-lead-submit" id="chatLeadSubmitBtn">
+            <span class="btn-label">Submit &amp; Start Chat</span>
+            <span class="btn-spinner"></span>
+          </button>
+          <div class="chat-form-alert" id="chatFormAlert"></div>
+        </form>
       </div>
 
-      <div class="chat-chips">
-        <button class="chat-chip" data-query="What are your opening hours?">Opening hours</button>
-        <button class="chat-chip" data-query="What are your membership prices?">Pricing</button>
-        <button class="chat-chip" data-query="What classes do you offer?">Classes</button>
-      </div>
+      <!-- Real chat interface (shown only after successful lead) -->
+      <div class="chat-active-area" id="chatActiveArea" hidden>
+        <div class="chat-messages" id="chatMessages"></div>
 
-      <form class="chat-input-form" id="chatInputForm">
-        <input type="text" id="chatInput" placeholder="Type your question..." autocomplete="off" aria-label="Chat message" />
-        <button type="submit" class="chat-send-btn" aria-label="Send message">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-        </button>
-      </form>
+        <div class="chat-chips">
+          <button class="chat-chip" data-query="What are your opening hours?">Opening hours</button>
+          <button class="chat-chip" data-query="What are your membership prices?">Pricing</button>
+          <button class="chat-chip" data-query="What classes do you offer?">Classes</button>
+        </div>
+
+        <form class="chat-input-form" id="chatInputForm">
+          <input type="text" id="chatInput" placeholder="Type your question..." autocomplete="off" aria-label="Chat message" />
+          <button type="submit" class="chat-send-btn" aria-label="Send message">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </form>
+      </div>
     </div>
 
     <button class="chat-trigger-btn" id="chatTriggerBtn" aria-expanded="false" aria-label="Open chat assistant">
